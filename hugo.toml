@@ -1,0 +1,12 @@
+baseURL = "https://sushiyiv.github.io/"
+theme = "PaperMod"
+languageCode = "zh-cn"
+title = "我的技术博客"
+
+[params]
+  defaultTheme = "dark"
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowToc = true
+
+publishDir = "public"
