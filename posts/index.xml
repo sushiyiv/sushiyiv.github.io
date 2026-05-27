@@ -1,8 +1,95 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on 我的技术博客</title><link>https://sushiyiv.github.io/posts/</link><description>Recent content in Posts on 我的技术博客</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://sushiyiv.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://sushiyiv.github.io/posts/first-post/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sushiyiv.github.io/posts/first-post/</guid><description>&lt;p&gt;-&amp;ndash;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on 我的技术博客</title><link>https://sushiyiv.github.io/posts/</link><description>Recent content in Posts on 我的技术博客</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://sushiyiv.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://sushiyiv.github.io/posts/260527/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sushiyiv.github.io/posts/260527/</guid><description>&lt;p&gt;-&amp;ndash;&lt;/p&gt;
+&lt;p&gt;title: &amp;ldquo;Linux 常用命令&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;date: 2025-05-27&lt;/p&gt;
+&lt;p&gt;draft: false&lt;/p&gt;
+&lt;p&gt;tags: [&amp;ldquo;Linux&amp;rdquo;, &amp;ldquo;教程&amp;rdquo;]&lt;/p&gt;
+&lt;p&gt;categories: [&amp;ldquo;Linux&amp;rdquo;]&lt;/p&gt;
+&lt;p&gt;-&amp;ndash;&lt;/p&gt;
+&lt;p&gt;## 简介&lt;/p&gt;
+&lt;p&gt;这篇文章总结了我学习 Linux 过程中最常用的命令。&lt;/p&gt;
+&lt;p&gt;## 文件操作&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#ae81ff"&gt;\#&lt;/span&gt; 1. ls — 看看当前目录有什么
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ls
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ls -l &lt;span style="color:#75715e"&gt;# 详细信息（权限、大小、日期）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ls -la &lt;span style="color:#75715e"&gt;# 包括隐藏文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#ae81ff"&gt;\#&lt;/span&gt; 2. cd — 进入某个目录
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cd /etc &lt;span style="color:#75715e"&gt;# 进入 /etc 目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cd &lt;span style="color:#ae81ff"&gt;\~&lt;/span&gt; &lt;span style="color:#75715e"&gt;# 回到家目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cd .. &lt;span style="color:#75715e"&gt;# 回到上一级&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cd / &lt;span style="color:#75715e"&gt;# 回到根目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#ae81ff"&gt;\#&lt;/span&gt; 3. pwd — 我现在在哪个目录
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pwd
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#ae81ff"&gt;\#&lt;/span&gt; 输出类似：/home/yourname
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#ae81ff"&gt;\#&lt;/span&gt; 4. mkdir — 创建文件夹
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;mkdir myfolder
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#ae81ff"&gt;\#&lt;/span&gt; 5. touch — 创建空文件
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;touch myfile.txt
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#ae81ff"&gt;\#&lt;/span&gt; 6. cp — 复制文件
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cp myfile.txt myfile&lt;span style="color:#ae81ff"&gt;\_&lt;/span&gt;backup.txt
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#ae81ff"&gt;\#&lt;/span&gt; 7. mv — 移动/重命名文件
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;mv myfile.txt newname.txt &lt;span style="color:#75715e"&gt;# 重命名&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;mv newname.txt myfolder/ &lt;span style="color:#75715e"&gt;# 移动到文件夹&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#ae81ff"&gt;\#&lt;/span&gt; 8. rm — 删除文件
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;rm myfile&lt;span style="color:#ae81ff"&gt;\_&lt;/span&gt;backup.txt
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;rm -r myfolder &lt;span style="color:#75715e"&gt;# 删除文件夹（-r 表示递归）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#ae81ff"&gt;\#&lt;/span&gt; 9. cat — 查看文件内容
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;echo &lt;span style="color:#e6db74"&gt;&amp;#34;hello linux&amp;#34;&lt;/span&gt; &amp;gt; test.txt &lt;span style="color:#75715e"&gt;# 写入内容到文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cat test.txt &lt;span style="color:#75715e"&gt;# 看看里面写了什么&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#ae81ff"&gt;\#&lt;/span&gt; 10. clear — 清屏
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;clear
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title/><link>https://sushiyiv.github.io/posts/first-post/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sushiyiv.github.io/posts/first-post/</guid><description>&lt;p&gt;-&amp;ndash;&lt;/p&gt;
 &lt;p&gt;title: &amp;ldquo;第一篇博客&amp;rdquo;&lt;/p&gt;
 &lt;p&gt;date: 2025-05-26&lt;/p&gt;
 &lt;p&gt;draft: false&lt;/p&gt;
 &lt;p&gt;-&amp;ndash;&lt;/p&gt;
 &lt;p&gt;## 你好，世界&lt;/p&gt;
 &lt;p&gt;这是我的第一篇技术博客。&lt;/p&gt;
-&lt;p&gt;我正在学习 Linux 和编程，用这个博客记录我的学习过程。&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;我正在学习 Linux 和编程，用这个博客记录我的学习过程。&lt;/p&gt;
+&lt;p&gt;光弄这个博客就弄了挺久，主要是连接不上GitHub，需要修改实际端口号，文件无法上传，需要修改权限。&lt;/p&gt;</description></item></channel></rss>
