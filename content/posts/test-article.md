@@ -1,7 +1,7 @@
 +++
-title = '{{ replace .File.ContentBaseName "-" " " | title }}'
-date = '{{ .Date }}'
-draft = fasle
+title = 'Test Article'
+date = '2026-07-09T11:49:01+08:00'
+draft = true
 description = ""
 tags = []
 categories = []
