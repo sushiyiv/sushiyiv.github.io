@@ -1,4 +1,65 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on 我的技术博客</title><link>https://sushiyiv.github.io/posts/</link><description>Recent content in Posts on 我的技术博客</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Thu, 09 Jul 2026 12:01:01 +0800</lastBuildDate><atom:link href="https://sushiyiv.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>虚拟机移动位置后网络问题解决方案</title><link>https://sushiyiv.github.io/posts/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%A7%BB%E5%8A%A8%E4%BD%8D%E7%BD%AE%E5%90%8E%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link><pubDate>Thu, 09 Jul 2026 12:01:01 +0800</pubDate><guid>https://sushiyiv.github.io/posts/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%A7%BB%E5%8A%A8%E4%BD%8D%E7%BD%AE%E5%90%8E%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid><description>为了解决空间不足问题，移动了虚拟机位置，结果导致网络连接错误以下是排查过程和解决办法</description></item><item><title/><link>https://sushiyiv.github.io/posts/260527/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sushiyiv.github.io/posts/260527/</guid><description>&lt;p&gt;-&amp;ndash;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on 我的技术博客</title><link>https://sushiyiv.github.io/posts/</link><description>Recent content in Posts on 我的技术博客</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Mon, 13 Jul 2026 22:26:51 +0800</lastBuildDate><atom:link href="https://sushiyiv.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Docker从安装到部署问题排查</title><link>https://sushiyiv.github.io/posts/docker%E4%BB%8E%E5%AE%89%E8%A3%85%E5%88%B0%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/</link><pubDate>Mon, 13 Jul 2026 22:26:51 +0800</pubDate><guid>https://sushiyiv.github.io/posts/docker%E4%BB%8E%E5%AE%89%E8%A3%85%E5%88%B0%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/</guid><description>&lt;h2 id="概述"&gt;概述&lt;/h2&gt;
+&lt;p&gt;现象一：apt install docker.io 失败
+原因： 系统 DNS 指向 127.0.0.53（systemd-resolved），未正常工作
+修复： Netplan 配置公共 DNS 223.5.5.5&lt;/p&gt;
+&lt;p&gt;现象二：docker pull 卡住无输出
+原因： Docker 有独立 DNS 配置，daemon.json 不存在，仍使用 127.0.0.53
+修复： 创建 daemon.json，配置 dns: [&amp;ldquo;223.5.5.5&amp;rdquo;, &amp;ldquo;8.8.8.8&amp;rdquo;]&lt;/p&gt;
+&lt;p&gt;现象三：docker pull 报 not found
+原因： 国内 Docker 镜像源失效或不稳定
+修复： 多次更换可用镜像源&lt;/p&gt;
+&lt;p&gt;现象四：docker pull 再次卡住
+原因： IPv6 DNS 污染，docker.io 解析到 Facebook 的 IPv6 地址
+修复： 禁用 IPv6（/etc/sysctl.conf 添加 disable_ipv6 = 1）&lt;/p&gt;
+&lt;h2 id="正文"&gt;正文&lt;/h2&gt;
+&lt;h1 id="故障排错日志docker-环境搭建"&gt;故障排错日志：Docker 环境搭建&lt;/h1&gt;
+&lt;hr&gt;
+&lt;h2 id="基本信息"&gt;基本信息&lt;/h2&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;故障标题：Ubuntu 虚拟机安装 Docker 及拉取镜像失败
+故障时间：2026-07-09
+影响范围：虚拟机内无法正常安装软件和拉取 Docker 镜像
+故障时长：约 1 小时
+处理人：SU
+最终状态：已解决
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id="故障现象"&gt;故障现象&lt;/h2&gt;
+&lt;h3 id="现象一apt-安装-docker-失败"&gt;现象一：apt 安装 Docker 失败&lt;/h3&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;现象：
+执行 sudo apt install docker.io 失败
+报错：Temporary failure resolving &amp;#39;cn.archive.ubuntu.com&amp;#39;
+时间：2026-07-09 18:00
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="现象二docker-拉取镜像失败"&gt;现象二：Docker 拉取镜像失败&lt;/h3&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;现象：
+执行 docker pull nginx
+卡在 Using default tag: latest，没有任何输出
+时间：2026-07-09 18:30
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="现象三docker-拉取镜像报错-not-found"&gt;现象三：Docker 拉取镜像报错 not found&lt;/h3&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;现象：
+执行 docker pull nginx
+报错：docker.io/library/nginx:latest: not found
+时间：2026-07-09 18:45
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="现象四docker-拉取镜像再次卡住"&gt;现象四：Docker 拉取镜像再次卡住&lt;/h3&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;现象：
+执行 docker pull nginx
+显示 Pulling fs layer 后卡住不动
+时间：2026-07-09 19:00
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id="排查过程"&gt;排查过程&lt;/h2&gt;
+&lt;h3 id="第一步apt-安装失败排查"&gt;第一步：apt 安装失败排查&lt;/h3&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;操作：sudo apt install docker.io
+报错：Temporary failure resolving &amp;#39;cn.archive.ubuntu.com&amp;#39;
+分析：
+&amp;#34;Temporary failure resolving&amp;#34; 是 DNS 解析失败
+域名无法解析为 IP 地址
+排查命令：
+ping 223.5.5.5 → 能 ping 通（网络正常）
+ping baidu.com → 无法解析（确认是 DNS 问题）
+cat /etc/resolv.conf → 显示 nameserver 127.0.0.53
+（systemd-resolved 本地代理，未正常工作）
+根因：
+系统 DNS 配置指向 127.0.0.53（systemd-resolved 本地解析器）
+该解析器未正常工作，导致所有域名解析失败
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;处理：&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>虚拟机移动位置后网络问题解决方案</title><link>https://sushiyiv.github.io/posts/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%A7%BB%E5%8A%A8%E4%BD%8D%E7%BD%AE%E5%90%8E%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link><pubDate>Thu, 09 Jul 2026 12:01:01 +0800</pubDate><guid>https://sushiyiv.github.io/posts/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%A7%BB%E5%8A%A8%E4%BD%8D%E7%BD%AE%E5%90%8E%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid><description>为了解决空间不足问题，移动了虚拟机位置，结果导致网络连接错误以下是排查过程和解决办法</description></item><item><title/><link>https://sushiyiv.github.io/posts/260527/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sushiyiv.github.io/posts/260527/</guid><description>&lt;p&gt;-&amp;ndash;&lt;/p&gt;
 &lt;p&gt;title: &amp;ldquo;Linux 常用命令&amp;rdquo;&lt;/p&gt;
 &lt;p&gt;date: 2025-05-27&lt;/p&gt;
 &lt;p&gt;draft: false&lt;/p&gt;
