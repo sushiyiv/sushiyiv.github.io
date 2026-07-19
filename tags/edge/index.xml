@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Edge on 我的技术博客</title><link>https://sushiyiv.github.io/tags/edge/</link><description>Recent content in Edge on 我的技术博客</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 19 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://sushiyiv.github.io/tags/edge/index.xml" rel="self" type="application/rss+xml"/><item><title>Edge 浏览器加载缓慢排查：从抖音卡顿到全站加速</title><link>https://sushiyiv.github.io/posts/%E7%BD%91%E7%BB%9C%E5%8A%A0%E8%BD%BD%E7%BC%93%E6%85%A2%E6%8E%92%E6%9F%A5%E8%AE%B0%E5%BD%95/</link><pubDate>Sun, 19 Jul 2026 00:00:00 +0000</pubDate><guid>https://sushiyiv.github.io/posts/%E7%BD%91%E7%BB%9C%E5%8A%A0%E8%BD%BD%E7%BC%93%E6%85%A2%E6%8E%92%E6%9F%A5%E8%AE%B0%E5%BD%95/</guid><description>&lt;h2 id="简介"&gt;简介&lt;/h2&gt;
+&lt;p&gt;最近在使用 Edge 浏览器时发现国内网站（抖音、B站）加载异常缓慢，视频加载需要几十秒甚至完全无法播放。通过 Wireshark 抓包分析，最终定位到问题根源并找到了解决方案。&lt;/p&gt;
+&lt;h2 id="问题现象"&gt;问题现象&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;抖音网页版：页面加载需要 40+ 秒，视频几乎无法播放&lt;/li&gt;
+&lt;li&gt;B站：页面加载后视频完全无法加载，显示&amp;quot;响应时间过长&amp;quot;&lt;/li&gt;
+&lt;li&gt;其他国内外网站也有不同程度的加载缓慢&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="排查工具"&gt;排查工具&lt;/h2&gt;
+&lt;p&gt;使用 Wireshark 的命令行版本 &lt;strong&gt;tshark&lt;/strong&gt; 进行抓包分析，主要命令：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-powershell" data-lang="powershell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# 协议分布&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;tshark -r 文件.pcapng -q -z io,phs
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# 每秒流量统计&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;tshark -r 文件.pcapng -q -z io,stat,&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# TLS 连接域名&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;tshark -r 文件.pcapng -Y &lt;span style="color:#e6db74"&gt;&amp;#34;tls.handshake.extensions_server_name&amp;#34;&lt;/span&gt; -T fields -e tls.handshake.extensions_server_name
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# SYN 重传目标&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;tshark -r 文件.pcapng -Y &lt;span style="color:#e6db74"&gt;&amp;#34;tcp.flags.syn == 1 &amp;amp;&amp;amp; tcp.analysis.retransmission&amp;#34;&lt;/span&gt; -T fields -e ip.dst
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# TCP 连接统计&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;tshark -r 文件.pcapng -q -z conv,tcp
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="排查过程"&gt;排查过程&lt;/h2&gt;
+&lt;h3 id="第一阶段google-safe-browsing-的隐形杀手"&gt;第一阶段：Google Safe Browsing 的&amp;quot;隐形杀手&amp;quot;&lt;/h3&gt;
+&lt;p&gt;第一次抓包发现，Edge 的 Safe Browsing 功能在后台不断尝试连接 Google 服务器：&lt;/p&gt;</description></item></channel></rss>
